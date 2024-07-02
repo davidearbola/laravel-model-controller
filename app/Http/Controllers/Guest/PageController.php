@@ -8,17 +8,30 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function movies()
+    public function home()
     {
         $prendoIdati = Movie::all();
         $movies = [
             'movies' => $prendoIdati
         ];
-        return view('movies', $movies);
+        return view('home', $movies);
     }
 
-    public function home()
+    public function moviesTable()
     {
-        return view('home');
+        $prendoIdati = Movie::all();
+        $movies = [
+            'movies' => $prendoIdati
+        ];
+        return view('moviesTable', $movies);
+    }
+
+    public function movieInfo($index)
+    {
+        $prendoIdati = Movie::find($index + 1);
+        $movies = [
+            'movie' => $prendoIdati
+        ];
+        return view('movieInfo', $movies);
     }
 }
